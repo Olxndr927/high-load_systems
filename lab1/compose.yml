@@ -1,0 +1,51 @@
+name: OZ_lab1
+services:
+    hazelcast-1:
+        image: 'hazelcast/hazelcast:5.4.0'
+        container_name: 'hz-node1'
+        environment:
+            - 'HZ_NETWORK_PUBLICADDRESS=192.168.0.103:5701'
+            - HZ_CLUSTERNAME=OZ_lab1
+            - HAZELCAST_CONFIG=conf.xml
+        volumes:
+          - ./conf.xml:/opt/hazelcast/conf.xml
+        network_mode: 'hazelcast-network'
+        ports:
+            - '5701:5701'
+
+    hazelcast-2:
+        image: 'hazelcast/hazelcast:5.4.0'
+        container_name: 'hz-node2'
+        environment:
+            - 'HZ_NETWORK_PUBLICADDRESS=192.168.0.103:5702'
+            - HZ_CLUSTERNAME=OZ_lab1
+            - HAZELCAST_CONFIG=conf.xml
+        volumes:
+          - ./conf.xml:/opt/hazelcast/conf.xml
+        network_mode: 'hazelcast-network'
+        ports:
+            - '5702:5701'
+
+    hazelcast-3:
+        image: 'hazelcast/hazelcast:5.4.0'
+        container_name: 'hz-node3'
+        environment:
+            - 'HZ_NETWORK_PUBLICADDRESS=192.168.0.103:5703'
+            - HZ_CLUSTERNAME=OZ_lab1
+            - HAZELCAST_CONFIG=conf.xml
+        volumes:
+          - ./conf.xml:/opt/hazelcast/conf.xml
+        network_mode: 'hazelcast-network'
+        ports:
+            - '5703:5701'
+
+    hc-management:
+      container_name: OZ_lab1_mngmnt
+      image: hazelcast/management-center:5.4.0
+      network_mode: hazelcast-network
+      depends_on:
+        - hazelcast-1
+        - hazelcast-2
+        - hazelcast-3
+      ports:
+        - 8080:8080

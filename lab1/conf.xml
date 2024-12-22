@@ -1,0 +1,11 @@
+<hazelcast xmlns="http://www.hazelcast.com/schema/config"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.hazelcast.com/schema/config
+           https://hazelcast.com/schema/config/hazelcast-config-5.0.xsd">
+
+  <cluster-name>OZ_lab1</cluster-name>
+  <cp-subsystem>
+    <cp-member-count>3</cp-member-count>
+    <group-size>3</group-size>
+  </cp-subsystem>
+</hazelcast>
