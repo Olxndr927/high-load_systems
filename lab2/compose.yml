@@ -1,0 +1,10 @@
+services:
+  postgres:
+    container_name: oz_lab2
+    environment:
+      - POSTGRES_DB=oz_lab2
+      - POSTGRES_USER=zaritsky_fb41mp
+      - POSTGRES_PASSWORD=bober0_0
+    ports:
+      - '5432:5432'
+    image: 'postgres:latest'
